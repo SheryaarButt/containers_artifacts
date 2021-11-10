@@ -20,9 +20,9 @@ spec:
           image: registryktt4522.azurecr.io/tripviewer:1.0
           env:
             - name: USERPROFILE_API_ENDPOINT
-              value: "http://userprofile-service:80)"
+              value: "http://userprofile-service:80"
             - name: TRIPS_API_ENDPOINT
-              value: "http://trips-service:80)"
+              value: "http://trips-service:80"
             - name: BING_MAPS_KEY
               value: "<guid>"
           resources:
