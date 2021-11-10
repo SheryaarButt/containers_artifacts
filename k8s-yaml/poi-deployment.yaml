@@ -20,13 +20,25 @@ spec:
           image: registryktt4522.azurecr.io/poi:1.0
           env:
             - name: SQL_USER
-              value: "sqladminkTt4522"
+              valueFrom:
+                secretKeyRef:
+                  name: sql-secret
+                  key: SQL_USER
             - name: SQL_PASSWORD
-              value: "kR6jp7Pm2"
+              valueFrom:
+                secretKeyRef:
+                  name: sql-secret
+                  key: SQL_PASSWORD
             - name: SQL_SERVER
-              value: "sqlserverktt4522.database.windows.net"
+              valueFrom:
+                secretKeyRef:
+                  name: sql-secret
+                  key: SQL_SERVER
             - name: SQL_DBNAME
-              value: "mydrivingDB"
+              valueFrom:
+                secretKeyRef:
+                  name: sql-secret
+                  key: SQL_DBNAME
           resources:
             requests:
               cpu: 100m
