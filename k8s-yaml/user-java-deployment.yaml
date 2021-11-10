@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user
+  name: user-java
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: user-java
   template:
     metadata:
       labels:
-        app: user
+        app: user-java
     spec:
       nodeSelector:
         beta.kubernetes.io/os: linux
       containers:
-        - name: user
-          image: registryktt4522.azurecr.io/user-java:1.0
+        - name: user-java
+          image: registryktt4522.azurecr.io/user-java:1.1
           env:
             - name: SQL_USER
               value: "sqladminkTt4522"
