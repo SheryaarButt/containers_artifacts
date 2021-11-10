@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tripviewer
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tripviewer
+  template:
+    metadata:
+      labels:
+        app: tripviewer
+    spec:
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      containers:
+        - name: tripviewer
+          image: registryktt4522.azurecr.io/tripviewer:1.0
+          env:
+            - name: USERPROFILE_API_ENDPOINT
+              value: "http://userprofile-service:80)"
+            - name: TRIPS_API_ENDPOINT
+              value: "http://trips-service:80)"
+            - name: BING_MAPS_KEY
+              value: "<guid>"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          ports:
+            - containerPort: 80
+              name: http
