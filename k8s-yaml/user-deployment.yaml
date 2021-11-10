@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      containers:
+        - name: user
+          image: registryktt4522.azurecr.io/user-java:1.0
+          env:
+            - name: SQL_USER
+              value: "sqladminkTt4522"
+            - name: SQL_PASSWORD
+              value: "kR6jp7Pm2"
+            - name: SQL_SERVER
+              value: "sqlserverktt4522.database.windows.net"
+            - name: SQL_DBNAME
+              value: "mydrivingDB"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          ports:
+            - containerPort: 80
+              name: http
