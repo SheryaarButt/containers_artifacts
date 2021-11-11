@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tripviewer-ingress
+  namespace: web
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  defaultBackend:
+    service:
+      name: tripviewer-service
+      port: 
+        number: 80
+  rules:
+    - host: tripviewer-ingress.1ca22301464543fca2fe.eastasia.aksapp.io
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service: 
+              name: tripviewer-service
+              port: 
+                number: 80
