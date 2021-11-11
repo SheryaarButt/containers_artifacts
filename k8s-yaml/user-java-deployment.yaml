@@ -22,22 +22,22 @@ spec:
             - name: SQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: sql-secret
+                  name: foosecret
                   key: SQL_USER
             - name: SQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: sql-secret
+                  name: foosecret
                   key: SQL_PASSWORD
             - name: SQL_SERVER
               valueFrom:
                 secretKeyRef:
-                  name: sql-secret
+                  name: foosecret
                   key: SQL_SERVER
             - name: SQL_DBNAME
               valueFrom:
                 secretKeyRef:
-                  name: sql-secret
+                  name: foosecret
                   key: SQL_DBNAME
           resources:
             requests:
@@ -49,3 +49,11 @@ spec:
           ports:
             - containerPort: 80
               name: http
+      volumes:
+        - name: kv-secrets-vol
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "sql-kv-secret"        
+
