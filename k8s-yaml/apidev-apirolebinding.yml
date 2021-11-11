@@ -1,0 +1,13 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: apidev-apirolebinding
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: apidev-apirole
+subjects:
+- kind: Group
+  namespace: api
+  name: 411df8d9-8f2f-41ee-ac8a-fb8046028867
