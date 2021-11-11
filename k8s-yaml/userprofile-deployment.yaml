@@ -26,23 +26,23 @@ spec:
             - name: SQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: sql-kv-secret
-                  key: SQL-USER
+                  name: foosecret
+                  key: SQL_USER
             - name: SQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: sql-kv-secret
-                  key: SQL-PASSWORD
+                  name: foosecret
+                  key: SQL_PASSWORD
             - name: SQL_SERVER
               valueFrom:
                 secretKeyRef:
-                  name: sql-kv-secret
-                  key: SQL-SERVER
+                  name: foosecret
+                  key: SQL_SERVER
             - name: SQL_DBNAME
               valueFrom:
                 secretKeyRef:
-                  name: sql-kv-secret
-                  key: SQL-DBNAME
+                  name: foosecret
+                  key: SQL_DBNAME
           resources:
             requests:
               cpu: 100m
@@ -59,4 +59,4 @@ spec:
             driver: secrets-store.csi.k8s.io
             readOnly: true
             volumeAttributes:
-              secretProviderClass: "sql-kv-secret"
+              secretProviderClass: "azure-sync"
